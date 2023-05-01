@@ -2,7 +2,7 @@ package com.testdb.testedb.application.usecases
 
 import com.testdb.testedb.application.ports.`in`.UpdateFraseUseCase
 import com.testdb.testedb.application.ports.out.FraseRespository
-import com.testdb.testedb.domain.FraseUpdateParams
+import com.testdb.testedb.domain.FraseParams
 import org.springframework.stereotype.Service
 
 
@@ -13,8 +13,8 @@ class UpdateFraseUseCaseImpl(
 
 ): UpdateFraseUseCase {
 
-    override fun execute(params: FraseUpdateParams) {
-        fraseRespository.update(params)
+    override fun execute(params: FraseParams, id: Int) {
+        fraseRespository.update(params, id)
     }
 
 }

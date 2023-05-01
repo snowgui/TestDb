@@ -1,9 +1,7 @@
 package com.testdb.testedb.adapter.controller
 
 import com.testdb.testedb.adapter.model.mapper.FraseRequestToFraseParamsMapper
-import com.testdb.testedb.adapter.model.mapper.FraseUpdateRequestToFraseUpdateParamsMapper
 import com.testdb.testedb.adapter.model.request.FraseRequest
-import com.testdb.testedb.adapter.model.request.FraseUpdateRequest
 import com.testdb.testedb.application.ports.`in`.DelFraseUseCase
 import com.testdb.testedb.application.ports.`in`.ListFraseUseCase
 import com.testdb.testedb.application.ports.`in`.SaveFraseUseCase
@@ -41,10 +39,10 @@ class FraseController(
 
     }
 
-    @PutMapping("")
-    fun update(@RequestBody request: FraseUpdateRequest) : ResponseEntity<String>{
+    @PutMapping("{id}")
+    fun update(@RequestBody request: FraseRequest, @PathVariable id: Int) : ResponseEntity<String>{
 
-        updateFraseUseCase.execute(FraseUpdateRequestToFraseUpdateParamsMapper.toDomain(request))
+        updateFraseUseCase.execute(FraseRequestToFraseParamsMapper.toDomain(request), id)
         return ResponseEntity.ok().body(MSG_SUCCESS)
 
     }

@@ -2,12 +2,10 @@ package com.testdb.testedb.adapter.persistence
 
 import com.testdb.testedb.adapter.persistence.mapper.FraseEntityToFraseDomainMapper
 import com.testdb.testedb.adapter.persistence.mapper.FraseParamsDomainToFraseEntityMapper
-import com.testdb.testedb.adapter.persistence.mapper.FraseUpdateParamsDomainToFraseEntityMapper
 import com.testdb.testedb.adapter.persistence.repository.FraseJpaRespository
 import com.testdb.testedb.application.ports.out.FraseRespository
 import com.testdb.testedb.domain.Frase
 import com.testdb.testedb.domain.FraseParams
-import com.testdb.testedb.domain.FraseUpdateParams
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -31,9 +29,9 @@ class FraseRespositoryImpl(
 
     }
 
-    override fun update(params: FraseUpdateParams) {
+    override fun update(params: FraseParams, id: Int) {
 
-        val obj = fraseJpaRespository.findById(params.id).get()
+        val obj = fraseJpaRespository.findById(id).get()
 
         obj.title = params.title
         obj.msg = params.msg
